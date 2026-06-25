@@ -32,15 +32,24 @@ export default async function WtnDetailPage({ params }: { params: { id: string }
 
   return (
     <div className="mx-auto max-w-3xl">
-      <div className="no-print flex items-center justify-between">
+      <div className="no-print flex flex-wrap items-center justify-between gap-2">
         <Link href="/dashboard/wtns" className="text-sm text-slate hover:underline">
           ← All transfer notes
         </Link>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {pdfUrl && (
             <a href={pdfUrl} target="_blank" rel="noreferrer" className={buttonClasses('secondary')}>
               Download PDF
             </a>
+          )}
+          {/* Clone button — available for any finalised WTN */}
+          {wtn.status === 'final' && (
+            <Link
+              href={`/dashboard/wtns/new?clone=${wtn.id}`}
+              className={buttonClasses('primary')}
+            >
+              Use for new job
+            </Link>
           )}
           {wtn.status === 'final' && (
             <Link
