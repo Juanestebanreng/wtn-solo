@@ -85,7 +85,7 @@ export default async function DashboardPage() {
                   {w.status}
                 </Badge>
                 <p className="mt-1 text-xs text-slate">
-                  {formatUkDate(w.transfer_date)}
+                  {w.transfer_date ? formatUkDate(w.transfer_date) : "—"}
                 </p>
               </div>
             </Link>
