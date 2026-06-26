@@ -33,7 +33,7 @@ export default function LandingPage() {
     <main className="min-h-screen bg-paper">
       <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
         <span className="font-display text-lg font-bold tracking-tight text-ink">
-          Tilo\u00a0WTN
+          Tilo WTN
         </span>
         <nav className="flex items-center gap-3">
           <Link href="/login" className="text-sm font-medium text-ink hover:underline">
@@ -49,7 +49,7 @@ export default function LandingPage() {
         <div>
           <Badge tone="amber">For UK one-van carriers</Badge>
           <h1 className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-            Create a compliant Waste\u00a0Transfer\u00a0Note in 60 seconds.
+            Create a compliant Waste Transfer Note in 60 seconds.
           </h1>
           <p className="mt-4 max-w-md text-base text-slate">
             Built for one-van carriers, clearance firms, and small UK waste
@@ -121,7 +121,7 @@ export default function LandingPage() {
       <section className="py-16">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <h2 className="font-display text-2xl font-bold tracking-tight text-ink">
-            \u00a315/month. 14-day free trial.
+            £15/month. 14-day free trial.
           </h2>
           <p className="mt-2 text-sm text-slate">
             One plan. Unlimited notes. Cancel any time.
