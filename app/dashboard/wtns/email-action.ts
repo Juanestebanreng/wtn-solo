@@ -5,7 +5,8 @@ import { getCurrentWorkspace } from '@/lib/workspace';
 import { Resend } from 'resend';
 
 export async function sendWtnsByEmail(wtnIds: string[], recipientEmail: string) {
-  const { supabase, workspaceId } = await getCurrentWorkspace();
+  const { workspaceId } = await getCurrentWorkspace();
+  const supabase = createClient();
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   const { data: wtns } = await supabase
