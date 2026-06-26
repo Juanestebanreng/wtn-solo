@@ -44,7 +44,7 @@ export default function OnboardingPage() {
           Set up your company profile
         </h1>
         <p className="mt-2 text-sm text-slate">
-          Save your details once and we'll pre-fill them on every new job — no typing your name and address each time.
+          Save your details once and we&apos;ll pre-fill them on every new job — no typing your name and address each time.
         </p>
 
         <div className="mt-4 rounded border border-steel bg-white px-4 py-3 text-sm text-slate">
@@ -92,7 +92,7 @@ export default function OnboardingPage() {
 
         <div className="mt-4 text-center">
           <Link href="/dashboard" className="text-sm text-slate underline hover:text-ink">
-            Skip for now — I'll fill this in under Profile later
+            Skip for now — I&apos;ll fill this in under Profile later
           </Link>
         </div>
       </div>
