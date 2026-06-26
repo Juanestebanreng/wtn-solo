@@ -58,24 +58,24 @@ export function Wizard({
   const [error, setError] = useState<string | null>(null);
 
   const [transferor, setTransferor] = useState<TransferorInput | undefined>(
-    cloneDefaults?.transferor as TransferorInput | undefined
+    cloneDefaults?.transferor ? { ...cloneDefaults.transferor } as TransferorInput : undefined
   );
   const [transferee, setTransferee] = useState<TransfereeInput | undefined>(
-    cloneDefaults?.transferee as TransfereeInput | undefined
+    cloneDefaults?.transferee ? { ...cloneDefaults.transferee } as TransfereeInput : undefined
   );
   const [waste, setWaste] = useState<WasteDetailsInput | undefined>(
-    cloneDefaults?.waste as WasteDetailsInput | undefined
+    cloneDefaults?.waste ? { ...cloneDefaults.waste } as WasteDetailsInput : undefined
   );
   // For clones, reset date/time to now
   const [transfer, setTransfer] = useState<TransferDetailsInput | undefined>(
     cloneDefaults?.transfer?.place_of_transfer
       ? {
           place_of_transfer: cloneDefaults.transfer.place_of_transfer,
-          transfer_date: todayIso(),
-          transfer_time: nowTime(),
+          transfer_date: cloneDefaults.transfer.transfer_date || todayIso(),
+          transfer_time: cloneDefaults.transfer.transfer_time || nowTime(),
           broker_dealer_name: cloneDefaults.transfer.broker_dealer_name,
           broker_dealer_registration_number: cloneDefaults.transfer.broker_dealer_registration_number,
-        }
+        } as TransferDetailsInput
       : undefined
   );
   const [signatures, setSignatures] = useState<SignaturesInput | undefined>();
