@@ -122,8 +122,8 @@ export default async function EditDraftPage({ params }: { params: { id: string }
         <Wizard
           transferorDefaults={transferorDefaults}
           hasCompanyProfile={hasCompanyProfile}
-          initialStep={initialStep}
-          cloneDefaults={draftDefaults}
+          initialStep={0}
+          cloneDefaults={draftDefaults as any}
         />
       </div>
     </div>
