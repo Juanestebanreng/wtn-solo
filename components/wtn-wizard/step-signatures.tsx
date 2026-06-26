@@ -106,6 +106,7 @@ export function StepSignatures({
         <Checkbox
           label="The transferor confirms it has applied the waste hierarchy when transferring this waste, as required by the Waste (England and Wales) Regulations 2011."
           {...register('waste_hierarchy_confirmed')}
+          onChange={(e) => setValue('waste_hierarchy_confirmed', e.target.checked as true, { shouldValidate: true })}
         />
         <FieldError message={errors.waste_hierarchy_confirmed?.message} />
       </div>
