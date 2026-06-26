@@ -4,7 +4,17 @@ import { getCurrentWorkspace } from '@/lib/workspace';
 import { Badge, Card } from '@/components/ui/card';
 import { buttonClasses } from '@/components/ui/button';
 import { formatUkDate } from '@/lib/utils';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
+
+async function deleteDraft(wtnId: string) {
+  'use server';
+  const { createClient } = await import('@/lib/supabase/server');
+  const supabase = createClient();
+  await supabase.from('wtns').delete().eq('id', wtnId).eq('status', 'draft');
+  revalidatePath('/dashboard/wtns');
+  redirect('/dashboard/wtns');
+}
 
 export default async function WtnDetailPage({ params }: { params: { id: string } }) {
   const { workspaceId } = await getCurrentWorkspace();
@@ -30,6 +40,8 @@ export default async function WtnDetailPage({ params }: { params: { id: string }
     pdfUrl = data?.signedUrl ?? null;
   }
 
+  const deleteDraftWithId = deleteDraft.bind(null, params.id);
+
   return (
     <div className="mx-auto max-w-3xl">
       <div className="no-print flex flex-wrap items-center justify-between gap-2">
@@ -42,7 +54,24 @@ export default async function WtnDetailPage({ params }: { params: { id: string }
               Download PDF
             </a>
           )}
-          {/* Clone button — available for any finalised WTN */}
+          {wtn.status === 'draft' && (
+            <>
+              <Link
+                href={`/dashboard/wtns/${params.id}/edit`}
+                className={buttonClasses('primary')}
+              >
+                Continue draft
+              </Link>
+              <form action={deleteDraftWithId}>
+                <button
+                  type="submit"
+                  className={buttonClasses('ghost')}
+                >
+                  Delete draft
+                </button>
+              </form>
+            </>
+          )}
           {wtn.status === 'final' && (
             <Link
               href={`/dashboard/wtns/new?clone=${wtn.id}`}
@@ -86,16 +115,14 @@ export default async function WtnDetailPage({ params }: { params: { id: string }
           <Field label="Quantity" value={wtn.quantity} />
           <Field
             label="Containment"
-            value={
-              wtn.containment_type === 'other' ? wtn.containment_other : wtn.containment_type
-            }
+            value={wtn.containment_type === 'other' ? wtn.containment_other : wtn.containment_type}
           />
         </Section>
 
         <Section title="Transfer">
           <Field
             label="Date / time"
-            value={`${formatUkDate(wtn.transfer_date)} at ${wtn.transfer_time}`}
+            value={wtn.transfer_date ? `${formatUkDate(wtn.transfer_date)} at ${wtn.transfer_time}` : null}
           />
           <Field label="Place" value={wtn.place_of_transfer} />
           {wtn.broker_dealer_name && (

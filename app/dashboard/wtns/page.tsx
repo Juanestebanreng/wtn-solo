@@ -44,6 +44,8 @@ export default async function WtnListPage({
 
   const { data: results } = await query.limit(100);
 
+  const hasFilters = searchParams.company || searchParams.postcode || searchParams.date || searchParams.ewc;
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -61,10 +63,8 @@ export default async function WtnListPage({
         <Input name="date" type="date" defaultValue={searchParams.date} />
         <Input name="ewc" placeholder="EWC code" defaultValue={searchParams.ewc} />
         <div className="sm:col-span-4">
-          <Button type="submit" variant="secondary">
-            Search
-          </Button>
-          {(searchParams.company || searchParams.postcode || searchParams.date || searchParams.ewc) && (
+          <Button type="submit" variant="secondary">Search</Button>
+          {hasFilters && (
             <Link href="/dashboard/wtns" className="ml-3 text-sm text-slate underline">
               Clear filters
             </Link>
@@ -73,32 +73,54 @@ export default async function WtnListPage({
       </form>
 
       <div className="mt-4 divide-y divide-steel rounded border border-steel bg-white">
-        {(results ?? []).length === 0 && (
+        {(results ?? []).length === 0 && !hasFilters && (
+          <div className="px-4 py-8 text-center">
+            <p className="text-sm font-medium text-ink">No transfer notes yet</p>
+            <p className="mt-1 text-sm text-slate">Create your first one to get started.</p>
+            {canWrite && (
+              <Link href="/dashboard/wtns/new" className={`mt-4 inline-block ${buttonClasses('primary')}`}>
+                New transfer note
+              </Link>
+            )}
+          </div>
+        )}
+        {(results ?? []).length === 0 && hasFilters && (
           <p className="px-4 py-6 text-sm text-slate">No matching transfer notes.</p>
         )}
         {results?.map((w: any) => (
           <Link
             key={w.id}
             href={`/dashboard/wtns/${w.id}`}
-            className="flex items-center justify-between px-4 py-3 text-sm hover:bg-paper2"
+            className={`flex items-center justify-between px-4 py-3 text-sm hover:bg-paper2 ${w.status === 'draft' ? 'bg-amber/5' : ''}`}
           >
             <div>
-              <p className="font-mono text-ink">{w.reference_number}</p>
+              <div className="flex items-center gap-2">
+                <p className="font-mono text-ink">{w.reference_number}</p>
+                {w.status === 'draft' && (
+                  <span className="rounded bg-amber/20 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-dark">
+                    Draft
+                  </span>
+                )}
+              </div>
               <p className="mt-0.5 text-slate">
-                {w.waste_description} — EWC {w.ewc_code}
+                {w.waste_description ? `${w.waste_description} — EWC ${w.ewc_code}` : 'Incomplete draft'}
               </p>
             </div>
             <div className="text-right">
-              <Badge tone={w.status === 'final' ? 'compliant' : 'default'}>
-                {w.status}
-              </Badge>
+              {w.status === 'final' && (
+                <Badge tone="compliant">Final</Badge>
+              )}
               <p className="mt-1 text-xs text-slate">
-                {formatUkDate(w.transfer_date)}
+                {w.transfer_date ? formatUkDate(w.transfer_date) : 'No date yet'}
               </p>
             </div>
           </Link>
         ))}
       </div>
+
+      <p className="mt-4 text-xs text-slate">
+        Records are kept indefinitely. UK regulations require a minimum of 2 years retention.
+      </p>
     </div>
   );
 }
