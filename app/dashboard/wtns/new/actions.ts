@@ -206,7 +206,8 @@ export async function finaliseWtn(payload: FinalisePayload) {
     }
   );
 
-  const pdfPath = `${workspaceId}/pdfs/${wtn.id}.pdf`;
+  const safeRef = (wtn.reference_number || wtn.id).replace(/[^a-zA-Z0-9-]/g, '-');
+  const pdfPath = `${workspaceId}/pdfs/${safeRef}.pdf`;
   const { error: pdfErr } = await supabase.storage
     .from('wtn-private')
     .upload(pdfPath, pdfBuffer, { contentType: 'application/pdf', upsert: true });
