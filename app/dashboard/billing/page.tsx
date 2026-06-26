@@ -26,7 +26,7 @@ export default async function BillingPage() {
       <Card className="mt-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-medium text-ink">WTN Solo — £15/month</p>
+            <p className="font-medium text-ink">Tilo WTN — £15/month</p>
             <p className="mt-1 text-sm text-slate">
               {isActive && 'Subscription active'}
               {!isActive && trialActive && trialEnds &&

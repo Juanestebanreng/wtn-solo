@@ -135,9 +135,9 @@ export default function LandingPage() {
 
       <footer className="border-t border-steel py-8">
         <div className="mx-auto max-w-5xl px-6 text-xs text-slate">
-          WTN Solo helps you create and store digital Waste Transfer Notes.
+          Tilo WTN helps you create and store digital Waste Transfer Notes.
           Current waste duty-of-care guidance requires records to be kept for
-          at least two years — WTN Solo keeps them indefinitely.
+          at least two years — Tilo WTN keeps them indefinitely.
         </div>
       </footer>
     </main>

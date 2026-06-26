@@ -21,7 +21,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'WTN Solo — Digital Waste Transfer Notes',
+  title: 'Tilo WTN — Digital Waste Transfer Notes',
   description:
     'Create compliant UK Waste Transfer Notes in under 60 seconds. Built for one-van carriers and small waste operators.',
 };
