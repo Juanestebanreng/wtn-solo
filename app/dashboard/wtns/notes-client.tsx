@@ -241,7 +241,7 @@ export default function NotesClient({
                   {w.transfer_date ? formatUkDate(w.transfer_date) : '\u2014'}
                 </p>
                 {pdfUrl && (
-                  
+                  <a
                     href={pdfUrl}
                     target="_blank"
                     rel="noreferrer"
