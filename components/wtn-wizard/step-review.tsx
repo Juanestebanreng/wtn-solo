@@ -80,18 +80,18 @@ export function StepReview({
       </SummaryBlock>
 
       <SummaryBlock title="Signatures">
-        <div className="flex gap-4">
+        <div className="grid grid-cols-2 gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element -- inline base64 data URLs, not a fit for next/image */}
           <img
             src={signatures.transferor_signature_data}
             alt="Transferor signature"
-            className="h-16 rounded border border-steel bg-white p-1"
+            className="w-full rounded border border-steel bg-white p-1"
           />
           {/* eslint-disable-next-line @next/next/no-img-element -- inline base64 data URLs, not a fit for next/image */}
           <img
             src={signatures.transferee_signature_data}
             alt="Transferee signature"
-            className="h-16 rounded border border-steel bg-white p-1"
+            className="w-full rounded border border-steel bg-white p-1"
           />
         </div>
       </SummaryBlock>
