@@ -123,6 +123,7 @@ export default async function EditDraftPage({ params }: { params: { id: string }
           transferorDefaults={transferorDefaults}
           hasCompanyProfile={hasCompanyProfile}
           initialStep={0}
+          draftId={params.id}
           cloneDefaults={draftDefaults as any}
         />
       </div>

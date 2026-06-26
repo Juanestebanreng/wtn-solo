@@ -39,10 +39,12 @@ export function Wizard({
   hasCompanyProfile,
   initialStep = 0,
   cloneDefaults,
+  draftId,
 }: {
   transferorDefaults: Partial<TransferorInput>;
   hasCompanyProfile: boolean;
   initialStep?: number;
+  draftId?: string;
   cloneDefaults?: {
     transferor?: Partial<TransferorInput>;
     transferee?: Partial<TransfereeInput>;
@@ -82,7 +84,7 @@ export function Wizard({
     setSaving(true);
     setError(null);
     try {
-      const id = await saveDraft({ transferor, transferee, waste, transfer });
+      const id = await saveDraft({ transferor, transferee, waste, transfer, draftId });
       router.push(`/dashboard/wtns/${id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not save draft');
