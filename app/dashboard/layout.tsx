@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 
 const navItems = [
   { href: '/dashboard', label: 'Overview', icon: '⊞' },
-  { href: '/dashboard/wtns', label: 'Notes', icon: '📋' },
   { href: '/dashboard/settings', label: 'Profile', icon: '🏢' },
   { href: '/dashboard/billing', label: 'Billing', icon: '💳' },
 ];

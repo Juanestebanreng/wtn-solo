@@ -8,7 +8,7 @@ import { StepWaste } from './step-waste';
 import { StepTransfer } from './step-transfer';
 import { StepSignatures } from './step-signatures';
 import { StepReview } from './step-review';
-import { saveDraft, finaliseWtn } from '@/app/dashboard/wtns/new/actions';
+import { finaliseWtn } from '@/app/dashboard/wtns/new/actions';
 import type {
   TransferorInput,
   TransfereeInput,
@@ -54,7 +54,6 @@ export function Wizard({
 }) {
   const router = useRouter();
   const [step, setStep] = useState(initialStep);
-  const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [transferor, setTransferor] = useState<TransferorInput | undefined>(
@@ -80,19 +79,6 @@ export function Wizard({
   );
   const [signatures, setSignatures] = useState<SignaturesInput | undefined>();
 
-  async function handleSaveDraft() {
-    setSaving(true);
-    setError(null);
-    try {
-      const id = await saveDraft({ transferor, transferee, waste, transfer, draftId });
-      router.push(`/dashboard/wtns/${id}`);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Could not save draft');
-    } finally {
-      setSaving(false);
-    }
-  }
-
   async function handleFinalise() {
     if (!transferor || !transferee || !waste || !transfer || !signatures) return;
     setError(null);
@@ -104,7 +90,6 @@ export function Wizard({
     }
   }
 
-  const hasProgress = Boolean(transferor || transferee || waste || transfer);
   // Progress bar covers steps 0-4; step 5 (review) shares the bar filled
   const progressStep = Math.min(step, STEP_LABELS.length - 1);
 
@@ -124,28 +109,6 @@ export function Wizard({
             <p className="text-sm font-semibold text-ink">Review &amp; finalise</p>
           )}
         </div>
-        {false && (
-          <button
-            type="button"
-            onClick={handleSaveDraft}
-            disabled={saving}
-            className="shrink-0 text-xs font-medium text-slate underline disabled:opacity-50"
-          >
-            {saving ? 'Saving…' : 'Save draft & exit'}
-          </button>
-        )}
-      </div>
-
-      {/* Progress bar */}
-      <div className="mb-6 flex gap-1">
-        {STEP_LABELS.map((label, i) => (
-          <div
-            key={label}
-            className={`h-1.5 flex-1 rounded-full transition-colors ${
-              i <= progressStep ? 'bg-ink' : 'bg-steel'
-            }`}
-          />
-        ))}
       </div>
 
       {/* No company profile banner on step 0 */}
