@@ -60,7 +60,6 @@ export default async function EditDraftPage({ params }: { params: { id: string }
       address_line_2: transferorParty.address_line_2 ?? '',
       city: transferorParty.city ?? '',
       postcode: transferorParty.postcode ?? '',
-      sic_code: wtn.sic_code ?? '',
       role_producer: transferorParty.role_producer ?? false,
       role_importer: transferorParty.role_importer ?? false,
       role_local_authority: transferorParty.role_local_authority ?? false,
