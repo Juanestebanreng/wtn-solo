@@ -66,8 +66,14 @@ export function Wizard({
   );
   // For clones, reset date/time to now
   const [transfer, setTransfer] = useState<TransferDetailsInput | undefined>(
-    cloneDefaults?.transfer
-      ? { ...cloneDefaults.transfer, transfer_date: todayIso(), transfer_time: nowTime() }
+    cloneDefaults?.transfer?.place_of_transfer
+      ? {
+          place_of_transfer: cloneDefaults.transfer.place_of_transfer,
+          transfer_date: todayIso(),
+          transfer_time: nowTime(),
+          broker_dealer_name: cloneDefaults.transfer.broker_dealer_name,
+          broker_dealer_registration_number: cloneDefaults.transfer.broker_dealer_registration_number,
+        }
       : undefined
   );
   const [signatures, setSignatures] = useState<SignaturesInput | undefined>();
