@@ -36,7 +36,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${display.variable} ${body.variable} ${mono.variable} font-body antialiased`}
-cd ~/Downloads/wtn-solo
-git add .
-git commit -m "add PostHog analytics"
-git push
+      >
+        <PHProvider>{children}</PHProvider>
+      </body>
+    </html>
+  );
+}
