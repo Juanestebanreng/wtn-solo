@@ -95,7 +95,7 @@ function partyDetail(party: WtnParty | undefined) {
 }
 
 export async function renderWtnPdf(
-  wtn: Wtn,
+  wtn: Wtn & { sic_code?: string | null },
   parties: WtnParty[],
   signatures: WtnSignature[],
   signatureImages: { transferor?: string; transferee?: string }
@@ -117,6 +117,12 @@ export async function renderWtnPdf(
           <View style={styles.col}>
             <Text style={styles.sectionTitle}>Transferor</Text>
             {partyDetail(transferor)}
+            {wtn.sic_code && (
+              <View style={styles.row}>
+                <Text style={styles.label}>SIC code</Text>
+                <Text style={styles.value}>{wtn.sic_code}</Text>
+              </View>
+            )}
           </View>
           <View style={styles.col}>
             <Text style={styles.sectionTitle}>Transferee</Text>
