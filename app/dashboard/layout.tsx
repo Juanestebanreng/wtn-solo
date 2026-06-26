@@ -28,7 +28,7 @@ export default async function DashboardLayout({
     <div className="min-h-screen bg-paper">
       <div className="flex">
         {/* Desktop sidebar */}
-        <aside className="no-print hidden w-56 shrink-0 border-r border-steel bg-white px-4 py-6 md:block">
+        <aside className="no-print hidden w-56 shrink-0 border-r border-steel bg-white px-4 py-6 md:block min-h-screen">
           <Link href="/" className="font-display text-lg font-bold text-ink">
             Tilo&nbsp;WTN
           </Link>
