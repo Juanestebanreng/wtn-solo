@@ -26,6 +26,7 @@ export async function saveCompanyProfile(formData: FormData) {
     city: String(formData.get('city') || ''),
     postcode: String(formData.get('postcode') || ''),
     sic_code: String(formData.get('sic_code') || ''),
+    notification_email: String(formData.get('notification_email') || ''),
     phone: String(formData.get('phone') || ''),
     email: String(formData.get('email') || ''),
     carrier_registration_number: String(formData.get('carrier_registration_number') || ''),
