@@ -124,7 +124,7 @@ export function Wizard({
             <p className="text-sm font-semibold text-ink">Review &amp; finalise</p>
           )}
         </div>
-        {hasProgress && step < 5 && (
+        {false && (
           <button
             type="button"
             onClick={handleSaveDraft}

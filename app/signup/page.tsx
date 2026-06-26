@@ -30,7 +30,7 @@ async function signup(formData: FormData) {
     redirect('/signup?check_email=1');
   }
 
-  redirect('/dashboard');
+  redirect('/onboarding');
 }
 
 export default function SignupPage({
