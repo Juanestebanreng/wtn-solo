@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
+import { PHProvider } from './providers';
 
 const display = Space_Grotesk({
   subsets: ['latin'],
@@ -35,9 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${display.variable} ${body.variable} ${mono.variable} font-body antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
-}
+cd ~/Downloads/wtn-solo
+git add .
+git commit -m "add PostHog analytics"
+git push
