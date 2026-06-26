@@ -61,45 +61,61 @@ export async function saveDraft(payload: {
   transferee?: Partial<TransfereeInput>;
   waste?: Partial<WasteDetailsInput>;
   transfer?: Partial<TransferDetailsInput>;
+  draftId?: string;
 }) {
   const { supabase, user, workspaceId } = await getWorkspaceContext();
 
-  const { data: wtn, error } = await supabase
-    .from('wtns')
-    .insert({
-      workspace_id: workspaceId,
-      status: 'draft',
-      transfer_date: payload.transfer?.transfer_date || null,
-      transfer_time: payload.transfer?.transfer_time || null,
-      place_of_transfer: payload.transfer?.place_of_transfer || null,
-      broker_dealer_name: payload.transfer?.broker_dealer_name || null,
-      broker_dealer_registration_number:
-        payload.transfer?.broker_dealer_registration_number || null,
-      waste_description: payload.waste?.waste_description || null,
-      ewc_code: payload.waste?.ewc_code || null,
-      quantity: payload.waste?.quantity || null,
-      containment_type: payload.waste?.containment_type || null,
-      containment_other: payload.waste?.containment_other || null,
-      created_by: user.id,
-    })
-    .select('id')
-    .single();
+  const wtnData = {
+    workspace_id: workspaceId,
+    status: 'draft' as const,
+    transfer_date: payload.transfer?.transfer_date || null,
+    transfer_time: payload.transfer?.transfer_time || null,
+    place_of_transfer: payload.transfer?.place_of_transfer || null,
+    broker_dealer_name: payload.transfer?.broker_dealer_name || null,
+    broker_dealer_registration_number:
+      payload.transfer?.broker_dealer_registration_number || null,
+    waste_description: payload.waste?.waste_description || null,
+    ewc_code: payload.waste?.ewc_code || null,
+    quantity: payload.waste?.quantity || null,
+    containment_type: payload.waste?.containment_type || null,
+    containment_other: payload.waste?.containment_other || null,
+    created_by: user.id,
+  };
 
-  if (error || !wtn) throw new Error(error?.message || 'Could not save draft');
+  let wtnId: string;
+
+  if (payload.draftId) {
+    const { error } = await supabase
+      .from('wtns')
+      .update(wtnData)
+      .eq('id', payload.draftId)
+      .eq('status', 'draft');
+    if (error) throw new Error(error.message);
+    wtnId = payload.draftId;
+    await supabase.from('wtn_parties').delete().eq('wtn_id', wtnId);
+  } else {
+    const { data: wtn, error } = await supabase
+      .from('wtns')
+      .insert(wtnData)
+      .select('id')
+      .single();
+    if (error || !wtn) throw new Error(error?.message || 'Could not save draft');
+    wtnId = wtn.id;
+  }
 
   const partyRows: Record<string, unknown>[] = [];
   if (payload.transferor) {
-    partyRows.push({ wtn_id: wtn.id, party_type: 'transferor', ...payload.transferor });
+    partyRows.push({ wtn_id: wtnId, party_type: 'transferor', ...payload.transferor });
   }
   if (payload.transferee) {
-    partyRows.push({ wtn_id: wtn.id, party_type: 'transferee', ...payload.transferee });
+    partyRows.push({ wtn_id: wtnId, party_type: 'transferee', ...payload.transferee });
   }
   if (partyRows.length) {
     await supabase.from('wtn_parties').insert(partyRows);
   }
 
   revalidatePath('/dashboard/wtns');
-  return wtn.id as string;
+  return wtnId as string;
 }
 
 export async function finaliseWtn(payload: FinalisePayload) {
