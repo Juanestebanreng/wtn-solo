@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
 function partyDetail(party: WtnParty | undefined) {
   if (!party) return null;
   const roles = [
-    party.role_producer && 'Producer',
-    party.role_importer && 'Importer',
-    party.role_local_authority && 'Local authority',
-    party.role_permit_holder && 'Permit holder',
-    party.role_exemption_holder && 'Registered exemption',
-    party.role_carrier && 'Carrier',
-    party.role_broker && 'Broker',
-    party.role_dealer && 'Dealer',
+    (party.role_producer === true || party.role_producer as any === 'on') && 'Producer',
+    (party.role_importer === true || party.role_importer as any === 'on') && 'Importer',
+    (party.role_local_authority === true || party.role_local_authority as any === 'on') && 'Local authority',
+    (party.role_permit_holder === true || party.role_permit_holder as any === 'on') && 'Permit holder',
+    (party.role_exemption_holder === true || party.role_exemption_holder as any === 'on') && 'Registered exemption',
+    (party.role_carrier === true || party.role_carrier as any === 'on') && 'Carrier',
+    (party.role_broker === true || party.role_broker as any === 'on') && 'Broker',
+    (party.role_dealer === true || party.role_dealer as any === 'on') && 'Dealer',
   ].filter(Boolean);
 
   return (
