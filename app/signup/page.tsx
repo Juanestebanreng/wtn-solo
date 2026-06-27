@@ -40,7 +40,7 @@ export default function SignupPage({
 }) {
   if (searchParams.check_email) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-paper px-6">
+      <main className="flex min-h-screen items-center justify-center bg-paper px-6 overflow-x-hidden">
         <div className="max-w-sm text-center">
           <h1 className="font-display text-2xl font-bold text-ink">Check your email</h1>
           <p className="mt-3 text-sm text-slate">
@@ -53,7 +53,7 @@ export default function SignupPage({
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper px-6">
+    <main className="flex min-h-screen items-center justify-center bg-paper px-6 overflow-x-hidden">
       <div className="w-full max-w-sm">
         <Link href="/" className="font-display text-lg font-bold text-ink">
           WTN&nbsp;Solo

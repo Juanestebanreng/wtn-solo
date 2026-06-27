@@ -30,7 +30,7 @@ const steps = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-paper">
+    <main className="min-h-screen bg-paper overflow-x-hidden">
       <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
         <span className="font-display text-lg font-bold tracking-tight text-ink">
           Tilo WTN

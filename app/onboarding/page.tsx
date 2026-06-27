@@ -34,7 +34,7 @@ async function saveAndContinue(formData: FormData) {
 
 export default function OnboardingPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper px-6 py-12">
+    <main className="flex min-h-screen items-center justify-center bg-paper px-6 overflow-x-hidden py-12">
       <div className="w-full max-w-md">
         <span className="font-display text-lg font-bold tracking-tight text-ink">
           Tilo WTN

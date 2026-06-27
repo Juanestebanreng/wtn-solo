@@ -25,7 +25,7 @@ export default function LoginPage({
   searchParams: { error?: string; redirect?: string };
 }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper px-6">
+    <main className="flex min-h-screen items-center justify-center bg-paper px-6 overflow-x-hidden">
       <div className="w-full max-w-sm">
         <Link href="/" className="font-display text-lg font-bold text-ink">
           WTN&nbsp;Solo
