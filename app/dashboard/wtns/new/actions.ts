@@ -150,6 +150,7 @@ export async function finaliseWtn(payload: FinalisePayload) {
   const { sic_code, ...transferorParty } = transferor as any;
   if (sic_code) {
     await supabase.from('wtns').update({ sic_code }).eq('id', wtn.id);
+    (wtn as any).sic_code = sic_code;
   }
   const { error: partyError } = await supabase.from('wtn_parties').insert([
     { wtn_id: wtn.id, party_type: 'transferor', ...transferorParty },
