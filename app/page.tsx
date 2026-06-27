@@ -121,7 +121,7 @@ export default function LandingPage() {
       <section className="py-16">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <h2 className="font-display text-2xl font-bold tracking-tight text-ink">
-            £15/month. 14-day free trial.
+            £14.99/month. 14-day free trial.
           </h2>
           <p className="mt-2 text-sm text-slate">
             One plan. Unlimited notes. Cancel any time.

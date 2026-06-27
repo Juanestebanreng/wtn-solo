@@ -62,7 +62,7 @@ export default function SignupPage({
           Start your free trial
         </h1>
         <p className="mt-1 text-sm text-slate">
-          14 days free, then £15/month. Cancel any time.
+          14 days free, then £14.99/month. Cancel any time.
         </p>
 
         {searchParams.error && (
