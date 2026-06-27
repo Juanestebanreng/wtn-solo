@@ -147,7 +147,10 @@ export async function finaliseWtn(payload: FinalisePayload) {
 
   if (wtnError || !wtn) throw new Error(wtnError?.message || 'Could not create transfer note');
 
-  const { sic_code: _sic, ...transferorParty } = transferor as any;
+  const { sic_code, ...transferorParty } = transferor as any;
+  if (sic_code) {
+    await supabase.from('wtns').update({ sic_code }).eq('id', wtn.id);
+  }
   const { error: partyError } = await supabase.from('wtn_parties').insert([
     { wtn_id: wtn.id, party_type: 'transferor', ...transferorParty },
     { wtn_id: wtn.id, party_type: 'transferee', ...transferee },
