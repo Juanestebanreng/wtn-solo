@@ -83,16 +83,16 @@ export function PartyFields({
         <div className="grid gap-2 sm:grid-cols-2">
           {isTransferor && (
             <>
-              <Checkbox label="Producer" {...register('role_producer')} />
-              <Checkbox label="Importer" {...register('role_importer')} />
+              <Checkbox label="Producer" {...register('role_producer', { setValueAs: (v) => v === true || v === 'on' })} />
+              <Checkbox label="Importer" {...register('role_importer', { setValueAs: (v) => v === true || v === 'on' })} />
             </>
           )}
-          <Checkbox label="Local authority" {...register('role_local_authority')} />
-          <Checkbox label="Permit holder" {...register('role_permit_holder')} />
-          <Checkbox label="Registered exemption" {...register('role_exemption_holder')} />
-          <Checkbox label="Carrier" {...register('role_carrier')} />
-          <Checkbox label="Broker" {...register('role_broker')} />
-          <Checkbox label="Dealer" {...register('role_dealer')} />
+          <Checkbox label="Local authority" {...register('role_local_authority', { setValueAs: (v) => v === true || v === 'on' })} />
+          <Checkbox label="Permit holder" {...register('role_permit_holder', { setValueAs: (v) => v === true || v === 'on' })} />
+          <Checkbox label="Registered exemption" {...register('role_exemption_holder', { setValueAs: (v) => v === true || v === 'on' })} />
+          <Checkbox label="Carrier" {...register('role_carrier', { setValueAs: (v) => v === true || v === 'on' })} />
+          <Checkbox label="Broker" {...register('role_broker', { setValueAs: (v) => v === true || v === 'on' })} />
+          <Checkbox label="Dealer" {...register('role_dealer', { setValueAs: (v) => v === true || v === 'on' })} />
         </div>
       </div>
 
