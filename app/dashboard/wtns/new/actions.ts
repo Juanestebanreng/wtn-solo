@@ -197,6 +197,7 @@ export async function finaliseWtn(payload: FinalisePayload) {
     .insert([transferorSigRow, transfereeSigRow]);
   if (sigError) throw new Error(sigError.message);
 
+  console.log('TRANSFEROR ROLES:', JSON.stringify(transferor));
   const pdfBuffer = await renderWtnPdf(
     wtn,
     [
