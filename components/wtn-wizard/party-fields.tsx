@@ -83,16 +83,32 @@ export function PartyFields({
         <div className="grid gap-2 sm:grid-cols-2">
           {isTransferor && (
             <>
-              <Checkbox label="Producer" {...register('role_producer', { setValueAs: (v) => v === true || v === 'on' })} />
-              <Checkbox label="Importer" {...register('role_importer', { setValueAs: (v) => v === true || v === 'on' })} />
+              <Checkbox label="Producer" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_producer')} onChange={(e) => form.setValue('role_producer', e.target.checked, { shouldValidate: true })} />
+              <Checkbox label="Importer" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_importer')} onChange={(e) => form.setValue('role_importer', e.target.checked, { shouldValidate: true })} />
             </>
           )}
-          <Checkbox label="Local authority" {...register('role_local_authority', { setValueAs: (v) => v === true || v === 'on' })} />
-          <Checkbox label="Permit holder" {...register('role_permit_holder', { setValueAs: (v) => v === true || v === 'on' })} />
-          <Checkbox label="Registered exemption" {...register('role_exemption_holder', { setValueAs: (v) => v === true || v === 'on' })} />
-          <Checkbox label="Carrier" {...register('role_carrier', { setValueAs: (v) => v === true || v === 'on' })} />
-          <Checkbox label="Broker" {...register('role_broker', { setValueAs: (v) => v === true || v === 'on' })} />
-          <Checkbox label="Dealer" {...register('role_dealer', { setValueAs: (v) => v === true || v === 'on' })} />
+          <Checkbox label="Local authority" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_local_authority')} onChange={(e) => form.setValue('role_local_authority', e.target.checked, { shouldValidate: true })} />
+          <Checkbox label="Permit holder" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_permit_holder')} onChange={(e) => form.setValue('role_permit_holder', e.target.checked, { shouldValidate: true })} />
+          <Checkbox label="Registered exemption" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_exemption_holder')} onChange={(e) => form.setValue('role_exemption_holder', e.target.checked, { shouldValidate: true })} />
+          <Checkbox label="Carrier" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_carrier')} onChange={(e) => form.setValue('role_carrier', e.target.checked, { shouldValidate: true })} />
+          <Checkbox label="Broker" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_broker')} onChange={(e) => form.setValue('role_broker', e.target.checked, { shouldValidate: true })} />
+          <Checkbox label="Dealer" checked={cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferor.tsx
+echo ===
+cat ~/Downloads/wtn-solo/components/wtn-wizard/step-transferee.tsxwatch('role_dealer')} onChange={(e) => form.setValue('role_dealer', e.target.checked, { shouldValidate: true })} />
         </div>
       </div>
 
